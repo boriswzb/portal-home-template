@@ -1,0 +1,458 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* --------------------------------------------------------------------
+   The shadcn animation / data-variant definitions below are inlined.
+   The original site pulled them in via `@import 'shadcn/tailwind.css'`;
+   inlining keeps this starter kit depending only on tailwindcss +
+   tw-animate-css instead of the whole shadcn CLI package.
+   The home page does not use these keyframes today - they are kept so
+   that adding dialog / dropdown / accordion components later still works.
+   Safe to delete this block if you never add those components.
+   -------------------------------------------------------------------- */
+@theme inline {
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(
+        --radix-accordion-content-height,
+        var(--accordion-panel-height, auto)
+      );
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(
+        --radix-accordion-content-height,
+        var(--accordion-panel-height, auto)
+      );
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/* Custom variants */
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-checked {
+  &:where([data-state="checked"]),
+  &:where([data-checked]:not([data-checked="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-unchecked {
+  &:where([data-state="unchecked"]),
+  &:where([data-unchecked]:not([data-unchecked="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-selected {
+  &:where([data-selected="true"]) {
+    @slot;
+  }
+}
+
+@custom-variant data-disabled {
+  &:where([data-disabled="true"]),
+  &:where([data-disabled]:not([data-disabled="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-active {
+  &:where([data-state="active"]),
+  &:where([data-active]:not([data-active="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-horizontal {
+  &:where([data-orientation="horizontal"]) {
+    @slot;
+  }
+}
+
+@custom-variant data-vertical {
+  &:where([data-orientation="vertical"]) {
+    @slot;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  
+  /* ══════════════════════════════════════════════════════════════
+     THEME TOKENS
+     主题色彩变量（浅色 / 深色各一套，改这里即可换肤）
+     ══════════════════════════════════════════════════════════════ */
+  
+  /* Education brand colors */
+  --edu-primary: #2563eb;
+  --edu-primary-light: #3b82f6;
+  --edu-primary-dark: #1d4ed8;
+  --edu-accent: #f59e0b;
+  --edu-accent-light: #fbbf24;
+  --edu-success: #10b981;
+  --edu-warm: #fef3c7;
+  --edu-cool: #eff6ff;
+}
+
+:root {
+  /* ══════════════════════════════════════════════════════════════
+     LIGHT MODE — Warm & Professional Education Style
+     浅色模式 - 温暖专业的教育风格
+     ══════════════════════════════════════════════════════════════ */
+  
+  /* Light background — warm white */
+  --background: oklch(0.99 0.003 90);
+  --foreground: oklch(0.21 0.02 260);
+  
+  /* Cards — clean white */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 260);
+  
+  /* Popovers */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.02 260);
+  
+  /* Primary: education blue */
+  --primary: oklch(0.45 0.18 260);
+  --primary-foreground: oklch(0.99 0.003 90);
+  
+  /* Secondary */
+  --secondary: oklch(0.96 0.005 90);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  
+  /* Muted */
+  --muted: oklch(0.96 0.005 90);
+  --muted-foreground: oklch(0.50 0.02 260);
+  
+  /* Accent: warm amber */
+  --accent: oklch(0.95 0.02 85);
+  --accent-foreground: oklch(0.25 0.04 55);
+  
+  /* Destructive */
+  --destructive: oklch(0.60 0.20 25);
+  
+  /* Borders: subtle warm */
+  --border: oklch(0.90 0.01 90);
+  --input: oklch(0.90 0.01 90);
+  --ring: oklch(0.45 0.18 260);
+  
+  /* Charts */
+  --chart-1: oklch(0.55 0.18 260);
+  --chart-2: oklch(0.65 0.16 280);
+  --chart-3: oklch(0.60 0.18 150);
+  --chart-4: oklch(0.70 0.15 40);
+  --chart-5: oklch(0.55 0.12 20);
+  
+  --radius: 0.625rem;
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.005 90);
+  --sidebar-foreground: oklch(0.21 0.02 260);
+  --sidebar-primary: oklch(0.45 0.18 260);
+  --sidebar-primary-foreground: oklch(0.99 0.003 90);
+  --sidebar-accent: oklch(0.95 0.02 85);
+  --sidebar-accent-foreground: oklch(0.25 0.04 55);
+  --sidebar-border: oklch(0.90 0.01 90);
+  --sidebar-ring: oklch(0.45 0.18 260);
+}
+
+.dark {
+  /* ══════════════════════════════════════════════════════════════
+     DARK MODE — Elegant Education Dark Theme
+     深色模式 - 优雅教育深色主题
+     温暖的深色调，蓝色点缀，不像科技风那么冷
+     ══════════════════════════════════════════════════════════════ */
+
+  /* Dark background — warm navy, not harsh black */
+  --background: oklch(0.15 0.015 260);
+  --foreground: oklch(0.94 0.01 90);
+
+  /* Cards: slightly elevated panels */
+  --card: oklch(0.19 0.018 260);
+  --card-foreground: oklch(0.94 0.01 90);
+
+  /* Popovers */
+  --popover: oklch(0.19 0.018 260);
+  --popover-foreground: oklch(0.94 0.01 90);
+
+  /* Primary: warm blue — inviting, not icy */
+  --primary: oklch(0.55 0.20 260);
+  --primary-foreground: oklch(0.10 0.015 260);
+
+  /* Secondary: muted navy */
+  --secondary: oklch(0.22 0.02 260);
+  --secondary-foreground: oklch(0.94 0.01 90);
+
+  /* Muted: subdued text */
+  --muted: oklch(0.22 0.02 260);
+  --muted-foreground: oklch(0.65 0.015 90);
+
+  /* Accent: warm amber glow */
+  --accent: oklch(0.30 0.06 75);
+  --accent-foreground: oklch(0.94 0.01 90);
+
+  /* Destructive */
+  --destructive: oklch(0.65 0.20 25);
+
+  /* Borders: warm subdued */
+  --border: oklch(0.28 0.02 260);
+  --input: oklch(0.28 0.02 260);
+
+  /* Ring: warm blue */
+  --ring: oklch(0.55 0.20 260);
+
+  /* Charts */
+  --chart-1: oklch(0.60 0.18 260);
+  --chart-2: oklch(0.65 0.15 280);
+  --chart-3: oklch(0.60 0.16 150);
+  --chart-4: oklch(0.70 0.14 40);
+  --chart-5: oklch(0.55 0.12 20);
+
+  /* Sidebar */
+  --sidebar: oklch(0.16 0.018 260);
+  --sidebar-foreground: oklch(0.94 0.01 90);
+  --sidebar-primary: oklch(0.55 0.20 260);
+  --sidebar-primary-foreground: oklch(0.10 0.015 260);
+  --sidebar-accent: oklch(0.25 0.025 260);
+  --sidebar-accent-foreground: oklch(0.94 0.01 90);
+  --sidebar-border: oklch(0.28 0.02 260);
+  --sidebar-ring: oklch(0.55 0.20 260);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EDUCATION THEME — Animations & Utilities
+   经典教育风格动画和工具类
+   ══════════════════════════════════════════════════════════════ */
+
+/* Gentle pulse for active elements */
+@keyframes edu-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+/* Fade in up animation */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer for loading */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Wave animation for audio */
+@keyframes wave {
+  0%,
+  100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+/* Breathing bars for presentation speech bubbles */
+@keyframes breathing-bar-1 {
+  0%, 100% { height: 3px; }
+  50% { height: 14px; }
+}
+@keyframes breathing-bar-2 {
+  0%, 100% { height: 6px; }
+  50% { height: 14px; }
+}
+@keyframes breathing-bar-3 {
+  0%, 100% { height: 3px; }
+  50% { height: 11px; }
+}
+
+/* ProseMirror Editor Styles */
+.prosemirror-editor {
+  cursor: text;
+}
+
+.prosemirror-editor.format-painter {
+  cursor: default !important;
+}
+
+/* Hide scrollbar by default, show on hover */
+@utility scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================================================================
+   移动端体验优化（业界标准做法，可按需删减）
+   ================================================================ */
+@media (max-width: 768px) {
+  /* 1. 禁用点击高亮（蓝色高亮框）*/
+  button, a, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    /* 禁用双击缩放 */
+    touch-action: manipulation;
+  }
+
+  /* 2. 最小点击区 44px（Apple HIG / Material Design 业界标准）*/
+  button:not([class*="h-"]) {
+    min-height: 36px;  /* 紧凑模式（速览模式密度高）*/
+  }
+
+  /* 3. 输入框 16px（避免 iOS 缩放）*/
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* 4. 滚动平滑 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 5. 滑入抽屉动画（备用，业界动画曲线）*/
+  @keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+}
+
+/* 6. PWA standalone 模式（无浏览器工具栏时补安全区内边距）*/
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   入场动画工具类（纯 CSS，无 JS 依赖）
+   页面用 .animate-fade-up + .delay-* 组合即可。
+   尊重用户的「减少动效」系统设置。
+   ══════════════════════════════════════════════════════════════ */
+.animate-fade-up {
+  animation: fade-in-up 0.45s ease-out both;
+}
+.animate-fade-up-lg {
+  animation: fade-in-up 0.55s ease-out both;
+}
+.delay-75  { animation-delay: 75ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-250 { animation-delay: 250ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-350 { animation-delay: 350ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-450 { animation-delay: 450ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-550 { animation-delay: 550ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-lg {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
